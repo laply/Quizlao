@@ -1,19 +1,12 @@
 import styled from 'styled-components/native';
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import {makeTime} from '../utils';
-import {addRank} from '../api/FireStore';
+import {ProgressChart} from 'react-native-chart-kit';
+import {Dimensions} from 'react-native';
+const {width} = Dimensions.get('window');
 
-const TimeTitle = styled.Text`
-  font-weight: 300;
-  font-size: 24px;
-  margin: 10px;
-`;
-const ButtonTitle = styled.Text`
-  color: #fff;
-  font-size: 24px;
-`;
 const TopContainer = styled.View`
-  align-items: flex-start;
+  align-items: center;
 `;
 const ButtonContainer = styled.TouchableOpacity`
   background-color: #000;
@@ -29,32 +22,60 @@ const BottomContainer = styled.View`
 const Container = styled.View`
   flex: 1;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: space-evenly;
   align-items: center;
   background-color: #fff;
 `;
 
-// DB에 저장하기
+const HeadTitle = styled.Text`
+  font-weight: 800;
+  font-size: 30px;
+`;
 
-// 오답 차트, 노트
+const SubTitle = styled.Text`
+  font-weight: 400;
+  font-size: 20px;
+  margin: 20px;
+`;
+const ButtonTitle = styled.Text`
+  color: #fff;
+  font-size: 24px;
+`;
+
 const End = ({navigation, route: {params}}) => {
+  const data = {
+    labels: ['정답'], 
+    data: [params.answer / params.total],
+  };
   return (
     <Container>
+      <HeadTitle>퀴즈 완료</HeadTitle>
       <TopContainer>
-        <TimeTitle>정답: {params.answer + ' / ' + params.total}</TimeTitle>
-        <TimeTitle>오답: {params.wrong + ' / ' + params.total}</TimeTitle>
-        <TimeTitle>
-          걸린 시간:{' '}
-          {makeTime(params.endTime.getTime() - params.startTime.getTime())} 초
-        </TimeTitle>
+        <ProgressChart
+          data={data}
+          width={width}
+          height={100}
+          strokeWidth={16}
+          radius={32}
+          chartConfig={{
+            backgroundColor: '#fff',
+            backgroundGradientFrom: '#fff',
+            backgroundGradientTo: '#fff',
+            color: (opacity = 1) => `rgba(0, 0, 146, ${opacity})`,
+            barPercentage: 0.5,
+          }}
+          hideLegend={false}
+        />
+        <SubTitle>
+          정답: {params.answer} 개 / 오답: {params.wrong} 개 ({' '}
+          {makeTime(params.endTime.getTime() - params.startTime.getTime())} 초 )
+        </SubTitle>
       </TopContainer>
       <BottomContainer>
-        <ButtonContainer onPress={() => navigation.navigate('note')}>
+        <ButtonContainer onPress={() => navigation.navigate('note', params)}>
           <ButtonTitle>오답노트</ButtonTitle>
         </ButtonContainer>
-        <ButtonContainer onPress={() => navigation.navigate('ranking')}>
-          <ButtonTitle>랭킹보기</ButtonTitle>
-        </ButtonContainer>
+
         <ButtonContainer onPress={() => navigation.navigate('main')}>
           <ButtonTitle>처음으로</ButtonTitle>
         </ButtonContainer>
