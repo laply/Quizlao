@@ -5,24 +5,7 @@ import {unescapeHtml, shuffleArray, makeTime} from '../utils';
 import {getData} from '../api/Server';
 import {useQuery} from 'react-query';
 import Loader from '../Loader';
-import {addRank} from '../api/FireStore';
 const {width, height} = Dimensions.get('window');
-
-const TimeTitle = styled.Text`
-  font-weight: 300;
-  font-size: 24px;
-  margin: 20px;
-`;
-const MainTitle = styled.Text`
-  font-weight: 600;
-  font-size: 30px;
-  margin: 0px 20px 50px;
-`;
-
-const ButtonTitle = styled.Text`
-  color: #fff;
-  font-size: 24px;
-`;
 
 const ButtonContainer = styled.TouchableOpacity`
   background-color: #000;
@@ -43,6 +26,22 @@ const StateContainer = styled.View`
   flex-direction: column;
   align-items: center;
   justify-content: space-evenly;
+`;
+
+const TimeTitle = styled.Text`
+  font-weight: 300;
+  font-size: 24px;
+  margin: 20px;
+`;
+const MainTitle = styled.Text`
+  font-weight: 600;
+  font-size: 30px;
+  margin: 0px 20px 50px;
+`;
+
+const ButtonTitle = styled.Text`
+  color: #fff;
+  font-size: 24px;
 `;
 
 const MakeSelection = ({item, data, answerEvent, wrongEvent, userInfo}) => {
@@ -109,16 +108,9 @@ const Quiz = ({navigation}) => {
         <ButtonContainer
           onPress={() => {
             userInfo.total += 1;
+
             if (userInfo.total >= data.results.length) {
               userInfo.endTime = new Date();
-              addRank({
-                total: userInfo.total,
-                answer: userInfo.answer,
-                wrong: userInfo.wrong,
-                time: makeTime(
-                  userInfo.endTime.getTime() - userInfo.startTime.getTime(),
-                ),
-              });
               navigation.navigate('end', userInfo);
             } else {
               updateLevel();
