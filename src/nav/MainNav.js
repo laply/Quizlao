@@ -15,6 +15,7 @@ const MainNav = () => {
         headerTitleAlign: 'center',
         headerTitle: '',
         title: '',
+        headerShown:false,
       }}
       initialRouteName="Main"
     >
