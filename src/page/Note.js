@@ -43,7 +43,7 @@ const makeWrongContainer = ({item}) => {
   );
 };
 
-const Note = ({navigation, route: {params}}) => {
+const Note = ({route: {params}}) => {
   return (
     <Container>
       <FlatList
@@ -55,7 +55,7 @@ const Note = ({navigation, route: {params}}) => {
           })
         }
         showsVerticalScrollIndicator={false}
-        keyExtractor={item => item}
+        keyExtractor={(item, index) => index.toString()}
       />
     </Container>
   );

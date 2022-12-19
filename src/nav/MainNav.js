@@ -15,15 +15,23 @@ const MainNav = () => {
         headerTitleAlign: 'center',
         headerTitle: '',
         title: '',
-        headerShown:false,
+        headerShown: false,
       }}
       initialRouteName="Main"
     >
       <Stack.Screen name="main" component={Main} />
       <Stack.Screen name="end" component={End} />
       <Stack.Screen name="quiz" component={Quiz} />
-      <Stack.Screen name="ranking" component={Ranking} />
-      <Stack.Screen name="note" component={Note} />
+      <Stack.Screen
+        options={{headerShown: true}}
+        name="ranking"
+        component={Ranking}
+      />
+      <Stack.Screen
+        options={{headerShown: true}}
+        name="note"
+        component={Note}
+      />
     </Stack.Navigator>
   );
 };
