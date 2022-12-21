@@ -10,4 +10,4 @@
 
 # 구현 영상 (IOS)
 
-![캡처2](image/Simulator-Screen-Recording-iPhone-13-2022-12-19-at-21.59.54.gif)
+![캡처3](image/Simulator-Screen-Recording-iPhone-13-2022-12-19-at-21.59.54.gif)
