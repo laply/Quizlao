@@ -32,6 +32,7 @@ const TimeTitle = styled.Text`
   font-weight: 300;
   font-size: 24px;
   margin: 20px;
+  color: black;
 `;
 const MainTitle = styled.Text`
   font-weight: 600;
