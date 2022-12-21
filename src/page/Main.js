@@ -1,14 +1,15 @@
 import styled from 'styled-components/native';
 import React from 'react';
 
-
 const MainTitle = styled.Text`
   font-weight: 800;
   font-size: 40px;
+  color: black;
 `;
 const SubTitle = styled.Text`
   font-size: 20px;
   margin: 5px;
+  color: black;
 `;
 const ButtonTitle = styled.Text`
   color: #fff;

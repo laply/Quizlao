@@ -30,12 +30,14 @@ const Container = styled.View`
 const HeadTitle = styled.Text`
   font-weight: 800;
   font-size: 30px;
+  color: black;
 `;
 
 const SubTitle = styled.Text`
   font-weight: 400;
   font-size: 20px;
   margin: 20px;
+  color: black;
 `;
 const ButtonTitle = styled.Text`
   color: #fff;
@@ -44,7 +46,7 @@ const ButtonTitle = styled.Text`
 
 const End = ({navigation, route: {params}}) => {
   const data = {
-    labels: ['정답'], 
+    labels: ['정답'],
     data: [params.answer / params.total],
   };
   return (
@@ -67,7 +69,7 @@ const End = ({navigation, route: {params}}) => {
           hideLegend={false}
         />
         <SubTitle>
-          정답: {params.answer} 개 / 오답: {params.wrong} 개 ({' '}
+          정답 / 오답 : {params.answer} / {params.wrong} 개 ({' '}
           {makeTime(params.endTime.getTime() - params.startTime.getTime())} 초 )
         </SubTitle>
       </TopContainer>

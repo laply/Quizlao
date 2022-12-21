@@ -1,6 +1,7 @@
 import {FlatList} from 'react-native';
 import React from 'react';
 import styled from 'styled-components/native';
+import {unescapeHtml} from '../utils';
 
 const Container = styled.View`
   flex: 1;
@@ -15,11 +16,13 @@ const BottomContainer = styled.View``;
 const ButtonTitle = styled.Text`
   font-size: 18px;
   margin: 5px 20px;
+  color: black;
 `;
 const MainTitle = styled.Text`
   font-weight: 500;
   font-size: 24px;
   margin: 10px 20px;
+  color: black;
 `;
 const WrongContainer = styled.View`
   align-items: flex-start;
@@ -33,11 +36,11 @@ const makeWrongContainer = ({item}) => {
   return (
     <WrongContainer>
       <MainTitle>
-        Q{item.number}. {item.question}
+        Q{item.number}. {unescapeHtml(item.question)}
       </MainTitle>
       <BottomContainer>
-        <ButtonTitle>정답: {item.answer}</ButtonTitle>
-        <ButtonTitle>선택한 오답: {item.wrong}</ButtonTitle>
+        <ButtonTitle>정답: {unescapeHtml(item.answer)}</ButtonTitle>
+        <ButtonTitle>선택한 오답: {unescapeHtml(item.wrong)}</ButtonTitle>
       </BottomContainer>
     </WrongContainer>
   );

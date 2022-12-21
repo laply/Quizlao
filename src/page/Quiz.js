@@ -37,6 +37,7 @@ const MainTitle = styled.Text`
   font-weight: 600;
   font-size: 30px;
   margin: 0px 20px 50px;
+  color: black;
 `;
 
 const ButtonTitle = styled.Text`
@@ -61,7 +62,7 @@ const MakeSelection = ({item, data, answerEvent, wrongEvent, userInfo}) => {
 };
 
 const Quiz = ({navigation}) => {
-  const {isLoading, data, refetch} = useQuery(['quiz'], getData);
+  const {isLoading, data} = useQuery(['quiz'], getData);
 
   const [userInfo, setUserInfo] = useState({
     answer: 0,
